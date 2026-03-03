@@ -1,0 +1,8 @@
+# Source material — keep locally, never commit
+*.pptx
+*.pptm
+*.pdf
+*.docx
+*.doc
+*.xlsx
+*.xls

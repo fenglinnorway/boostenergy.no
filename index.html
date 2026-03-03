@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="en" class="lang-en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BoostEnergy AS – Empowering the Nordics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ───────────────────────────────────────────
+       RESET & BASE
+    ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:       #0057B8;
+      --blue-dark:  #003A8C;
+      --blue-light: #E8F4FD;
+      --green:      #00A878;
+      --green-dark: #007A57;
+      --green-light:#E6F7F2;
+      --navy:       #0A1628;
+      --gray-100:   #F5F7FA;
+      --gray-200:   #E5E7EB;
+      --gray-500:   #6B7280;
+      --gray-700:   #374151;
+      --text:       #1F2937;
+      --white:      #FFFFFF;
+      --font:       'Microsoft YaHei', 'Noto Sans SC', 'PingFang SC', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+      --radius:     8px;
+      --shadow:     0 4px 24px rgba(0,0,0,0.10);
+      --shadow-lg:  0 8px 40px rgba(0,0,0,0.16);
+      --transition: 0.3s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    img { display: block; width: 100%; object-fit: cover; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ───────────────────────────────────────────
+       LANGUAGE TOGGLE
+    ─────────────────────────────────────────── */
+    .lang-en .zh { display: none !important; }
+    .lang-zh .en { display: none !important; }
+
+    /* ───────────────────────────────────────────
+       NAVBAR
+    ─────────────────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 68px;
+      background: rgba(10,22,40,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      transition: background var(--transition);
+    }
+    #navbar.scrolled {
+      background: var(--navy);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--white);
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .nav-logo svg { flex-shrink: 0; }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      align-items: center;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      transition: color var(--transition);
+      white-space: nowrap;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .lang-switcher {
+      display: flex;
+      background: rgba(255,255,255,0.12);
+      border-radius: 20px;
+      padding: 3px;
+      gap: 2px;
+    }
+    .lang-btn {
+      padding: 4px 12px;
+      border: none;
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      border-radius: 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: var(--font);
+      transition: all var(--transition);
+    }
+    .lang-btn.active {
+      background: var(--green);
+      color: var(--white);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ───────────────────────────────────────────
+       HERO
+    ─────────────────────────────────────────── */
+    #home {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('Image_20260302235622_227_2597.jpg') center/cover no-repeat;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(10,22,40,0.85) 0%,
+        rgba(0,57,140,0.60) 50%,
+        rgba(0,168,120,0.25) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 740px;
+      padding: 0 6%;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,168,120,0.25);
+      border: 1px solid rgba(0,168,120,0.5);
+      color: #6EE7C7;
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.4rem;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0%,100%  { opacity: 1; transform: scale(1);   }
+      50%      { opacity: .5; transform: scale(1.5); }
+    }
+    .hero-title {
+      color: var(--white);
+      font-size: clamp(2rem, 4.5vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.18;
+      margin-bottom: 1.2rem;
+    }
+    .hero-title .accent { color: var(--green); }
+    .hero-sub {
+      color: rgba(255,255,255,0.80);
+      font-size: clamp(0.95rem, 2vw, 1.12rem);
+      max-width: 560px;
+      margin-bottom: 2.2rem;
+      line-height: 1.75;
+    }
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .btn-primary {
+      padding: 14px 34px;
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-2px); }
+    .btn-outline {
+      padding: 14px 34px;
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.55);
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.1); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.55);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+    }
+    .hero-scroll span { animation: bounce 2s infinite; }
+    @keyframes bounce {
+      0%,100% { transform: translateY(0);   }
+      50%     { transform: translateY(7px); }
+    }
+
+    /* ───────────────────────────────────────────
+       STATS BAR
+    ─────────────────────────────────────────── */
+    .stats-bar {
+      background: var(--blue-dark);
+      padding: 36px 6%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 16px;
+      color: var(--white);
+      border-right: 1px solid rgba(255,255,255,0.12);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1.1;
+    }
+    .stat-label { font-size: 0.82rem; color: rgba(255,255,255,0.7); margin-top: 4px; }
+
+    /* ───────────────────────────────────────────
+       SECTION COMMONS
+    ─────────────────────────────────────────── */
+    section { scroll-margin-top: 68px; }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 88px 6%;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green-dark);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .section-tag::before {
+      content: '';
+      width: 28px; height: 2px;
+      background: var(--green);
+      border-radius: 2px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 1rem;
+    }
+    .section-desc {
+      color: var(--gray-500);
+      font-size: 1rem;
+      max-width: 620px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+
+    /* ───────────────────────────────────────────
+       HOMEPAGE OVERVIEW (Services Grid)
+    ─────────────────────────────────────────── */
+    #overview { background: var(--gray-100); }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+    }
+    .service-card-img { height: 220px; }
+    .service-card-img img { height: 100%; }
+    .service-card-body { padding: 28px 24px; }
+    .service-card-icon {
+      width: 46px; height: 46px;
+      background: var(--blue-light);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+    .service-card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .service-card-desc {
+      color: var(--gray-500);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--blue);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 16px;
+      transition: gap var(--transition);
+    }
+    .card-link:hover { gap: 10px; }
+
+    /* ───────────────────────────────────────────
+       AFTER-SALES SERVICE
+    ─────────────────────────────────────────── */
+    #aftersales { background: var(--white); }
+
+    .aftersales-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .service-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .service-item {
+      background: var(--gray-100);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+      border-left: 3px solid var(--blue);
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .service-item:hover { border-color: var(--green); background: var(--green-light); }
+    .service-item-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .service-item-desc {
+      font-size: 0.82rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    .aftersales-images { display: flex; flex-direction: column; gap: 16px; }
+    .aftersales-images .img-tall  { height: 320px; border-radius: var(--radius); overflow: hidden; }
+    .aftersales-images .img-short { height: 200px; border-radius: var(--radius); overflow: hidden; }
+
+    /* ───────────────────────────────────────────
+       INSTALLATION & TESTING
+    ─────────────────────────────────────────── */
+    #installation { background: var(--navy); }
+    #installation .section-title { color: var(--white); }
+    #installation .section-desc  { color: rgba(255,255,255,0.65); }
+    #installation .section-tag   { color: var(--green); }
+    #installation .section-tag::before { background: var(--green); }
+
+    .install-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    .install-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: var(--radius);
+      padding: 28px 24px;
+      transition: background var(--transition), border-color var(--transition);
+    }
+    .install-card:hover { background: rgba(0,168,120,0.12); border-color: rgba(0,168,120,0.4); }
+    .install-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+    .install-title {
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .install-desc {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    .install-gallery {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 16px;
+    }
+    .install-gallery > div { border-radius: var(--radius); overflow: hidden; }
+    .install-gallery .main-img { height: 340px; }
+    .install-gallery .side-img { height: 340px; }
+
+    /* ───────────────────────────────────────────
+       WAREHOUSING & LOGISTICS
+    ─────────────────────────────────────────── */
+    #warehousing { background: var(--gray-100); }
+
+    .warehouse-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .warehouse-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .warehouse-images div { border-radius: var(--radius); overflow: hidden; }
+    .warehouse-images .w-tall { height: 300px; grid-column: span 2; }
+    .warehouse-images .w-short{ height: 200px; }
+
+    .warehouse-features { display: flex; flex-direction: column; gap: 22px; }
+    .warehouse-feature {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+    .feature-icon-wrap {
+      width: 48px; height: 48px;
+      background: var(--white);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      box-shadow: var(--shadow);
+    }
+    .feature-text-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+    .feature-text-desc {
+      font-size: 0.85rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    /* ───────────────────────────────────────────
+       ABOUT US
+    ─────────────────────────────────────────── */
+    #about { background: var(--white); }
+
+    .about-hero-img {
+      width: 100%;
+      height: 380px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 56px;
+    }
+
+    .about-blocks {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 60px;
+      align-items: start;
+      margin-bottom: 56px;
+    }
+    .about-text p {
+      color: var(--gray-700);
+      line-height: 1.85;
+      font-size: 0.97rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .pillar {
+      background: var(--blue-light);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      border-left: 4px solid var(--blue);
+    }
+    .pillar-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 6px;
+    }
+    .pillar-text {
+      font-size: 0.9rem;
+      color: var(--navy);
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .value-card {
+      text-align: center;
+      padding: 32px 20px;
+      background: var(--gray-100);
+      border-radius: var(--radius);
+      transition: background var(--transition), transform var(--transition);
+    }
+    .value-card:hover { background: var(--green-light); transform: translateY(-4px); }
+    .value-icon { font-size: 2.4rem; margin-bottom: 14px; }
+    .value-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .value-desc {
+      font-size: 0.82rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    /* ───────────────────────────────────────────
+       CONTACT
+    ─────────────────────────────────────────── */
+    #contact {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--navy) 100%);
+    }
+    #contact .section-title { color: var(--white); }
+    #contact .section-desc  { color: rgba(255,255,255,0.65); }
+    #contact .section-tag   { color: var(--green); }
+    #contact .section-tag::before { background: var(--green); }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 28px; }
+    .contact-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .contact-icon {
+      width: 46px; height: 46px;
+      background: rgba(0,168,120,0.2);
+      border: 1px solid rgba(0,168,120,0.4);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .contact-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--green);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .contact-value {
+      color: rgba(255,255,255,0.9);
+      font-size: 0.95rem;
+    }
+
+    .contact-form {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.05em;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 4px;
+      padding: 12px 16px;
+      color: var(--white);
+      font-family: var(--font);
+      font-size: 0.9rem;
+      transition: border-color var(--transition);
+      outline: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.35); }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--green); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select option { background: var(--navy); color: var(--white); }
+    .form-submit {
+      width: 100%;
+      padding: 14px;
+      background: var(--green);
+      color: var(--white);
+      border: none;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      font-family: var(--font);
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+    .form-submit:hover { background: var(--green-dark); }
+
+    /* ───────────────────────────────────────────
+       FOOTER
+    ─────────────────────────────────────────── */
+    footer {
+      background: #050e1c;
+      color: rgba(255,255,255,0.6);
+      padding: 52px 6% 28px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand-name {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--white);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .footer-brand-desc { font-size: 0.85rem; line-height: 1.7; max-width: 280px; }
+    .footer-heading {
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.55);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--green); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ───────────────────────────────────────────
+       DIVIDER ACCENT
+    ─────────────────────────────────────────── */
+    .divider-accent {
+      width: 56px; height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      border-radius: 2px;
+      margin: 12px 0 2rem;
+    }
+
+    /* ───────────────────────────────────────────
+       RESPONSIVE
+    ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .stats-bar          { grid-template-columns: repeat(2, 1fr); }
+      .overview-grid      { grid-template-columns: 1fr 1fr; }
+      .aftersales-layout  { grid-template-columns: 1fr; }
+      .install-grid       { grid-template-columns: 1fr 1fr; }
+      .install-gallery    { grid-template-columns: 1fr 1fr; }
+      .install-gallery .main-img { grid-column: span 2; }
+      .warehouse-layout   { grid-template-columns: 1fr; }
+      .about-blocks       { grid-template-columns: 1fr; }
+      .values-grid        { grid-template-columns: 1fr 1fr; }
+      .contact-layout     { grid-template-columns: 1fr; }
+      .footer-top         { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; background: var(--navy); flex-direction: column; padding: 20px 6%; gap: 1rem; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .overview-grid { grid-template-columns: 1fr; }
+      .service-list { grid-template-columns: 1fr; }
+      .install-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════ -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">
+    <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+      <polygon points="15,2 28,10 28,20 15,28 2,20 2,10" fill="none" stroke="#00A878" stroke-width="1.5"/>
+      <path d="M10 17 L15 8 L15 14 L20 14 L15 22 L15 16 Z" fill="#00A878"/>
+    </svg>
+    BoostEnergy<span style="color:var(--green);">&nbsp;AS</span>
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home"><span class="en">Home</span><span class="zh">首页</span></a></li>
+    <li><a href="#aftersales"><span class="en">After-sales Service</span><span class="zh">售后服务</span></a></li>
+    <li><a href="#installation"><span class="en">Installation &amp; Testing</span><span class="zh">安装与测试</span></a></li>
+    <li><a href="#warehousing"><span class="en">Warehousing &amp; Logistics</span><span class="zh">仓储物流</span></a></li>
+    <li><a href="#about"><span class="en">About Us</span><span class="zh">关于我们</span></a></li>
+    <li><a href="#contact"><span class="en">Contact Us</span><span class="zh">联系我们</span></a></li>
+  </ul>
+
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" id="btnEn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btnZh" onclick="setLang('zh')">中文</button>
+    </div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="en">Nordic Clean Energy Solutions</span>
+      <span class="zh">北欧清洁能源解决方案</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="en">Empowering the&nbsp;<span class="accent">Nordics</span><br>A Digital &amp; Intelligent Future</span>
+      <span class="zh">赋能北欧<br><span class="accent">数智未来</span></span>
+    </h1>
+    <p class="hero-sub">
+      <span class="en">BoostEnergy AS is a Norway-based technology innovation company providing high-quality engineering, digital and integrated solutions across the Nordic region — driving the green energy transition.</span>
+      <span class="zh">BoostEnergy AS 是一家总部位于挪威的技术创新公司，为北欧市场提供高质量的工程、数字化及综合解决方案，推动绿色能源转型。</span>
+    </p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('overview').scrollIntoView({behavior:'smooth'})">
+        <span class="en">Explore Services</span>
+        <span class="zh">了解服务</span>
+      </button>
+      <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+        <span class="en">Contact Us</span>
+        <span class="zh">联系我们</span>
+      </button>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>↓</span>
+    <span class="en" style="font-size:0.7rem;letter-spacing:.1em;">SCROLL</span>
+    <span class="zh" style="font-size:0.7rem;letter-spacing:.1em;">滚动</span>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     STATS BAR
+═══════════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-number">2025</div>
+    <div class="stat-label"><span class="en">Founded</span><span class="zh">成立年份</span></div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">4</div>
+    <div class="stat-label"><span class="en">Nordic Countries</span><span class="zh">北欧服务国家</span></div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">3</div>
+    <div class="stat-label"><span class="en">Core Service Areas</span><span class="zh">核心业务板块</span></div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">∞</div>
+    <div class="stat-label"><span class="en">Commitment to Innovation</span><span class="zh">持续创新驱动</span></div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════
+     OVERVIEW (Home — Service Cards)
+═══════════════════════════════════════════════ -->
+<section id="overview">
+  <div class="section-inner">
+    <div class="section-tag"><span class="en">Our Core Services</span><span class="zh">核心服务</span></div>
+    <h2 class="section-title">
+      <span class="en">Integrated Solutions for New Energy</span>
+      <span class="zh">新能源综合解决方案</span>
+    </h2>
+    <div class="divider-accent"></div>
+    <p class="section-desc">
+      <span class="en">BoostEnergy combines software & hardware development, technical consulting and project execution to enable digital transformation and sustainable development across new energy, industry and infrastructure.</span>
+      <span class="zh">BoostEnergy 融合软硬件开发、技术咨询与项目执行，推动新能源、工业和基础设施领域的数字化转型与可持续发展。</span>
+    </p>
+
+    <div class="overview-grid">
+      <!-- Card 1 -->
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="Image_20260302235646_236_2597.jpg" alt="After-sales service" />
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0057B8" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div class="service-card-title"><span class="en">After-sales Service</span><span class="zh">售后服务</span></div>
+          <p class="service-card-desc">
+            <span class="en">Comprehensive repair and maintenance for commercial energy storage, EVs and new energy equipment — cell balancing, thermal management, firmware upgrades and more.</span>
+            <span class="zh">工商业储能及新能源车辆全面维修保养服务，包含电芯均衡、热管理、程序升级等。</span>
+          </p>
+          <a href="#aftersales" class="card-link"><span class="en">Learn more</span><span class="zh">了解更多</span> →</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="Image_20260302235643_234_2597.jpg" alt="Installation & Testing" />
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0057B8" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div class="service-card-title"><span class="en">Installation &amp; Testing</span><span class="zh">安装与测试服务</span></div>
+          <p class="service-card-desc">
+            <span class="en">PV, energy storage, wind turbine installation and commissioning. Vehicle testing in Europe including cold-climate road tests in Scandinavia.</span>
+            <span class="zh">光伏、储能、风机安装调试，以及国内车辆在欧洲（包括斯堪的纳维亚寒地）的测试服务。</span>
+          </p>
+          <a href="#installation" class="card-link"><span class="en">Learn more</span><span class="zh">了解更多</span> →</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="service-card">
+        <div class="service-card-img">
+          <img src="Image_20260302235654_239_2597.jpg" alt="Warehousing & Logistics" />
+        </div>
+        <div class="service-card-body">
+          <div class="service-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0057B8" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="service-card-title"><span class="en">Warehousing &amp; Logistics</span><span class="zh">仓储物流</span></div>
+          <p class="service-card-desc">
+            <span class="en">Spare parts storage, goods warehousing, compliant transport of hazardous materials (batteries), and parts delivery across the Nordics.</span>
+            <span class="zh">备件存储、货物仓储、电池等危险品合规运输，以及北欧范围内的配件配送服务。</span>
+          </p>
+          <a href="#warehousing" class="card-link"><span class="en">Learn more</span><span class="zh">了解更多</span> →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     AFTER-SALES SERVICE
+═══════════════════════════════════════════════ -->
+<section id="aftersales">
+  <div class="section-inner">
+    <div class="section-tag"><span class="en">After-sales Service</span><span class="zh">售后服务</span></div>
+    <h2 class="section-title">
+      <span class="en">Professional Repair &amp; Maintenance</span>
+      <span class="zh">专业维修与维护保养</span>
+    </h2>
+    <div class="divider-accent"></div>
+
+    <div class="aftersales-layout">
+      <div>
+        <p class="section-desc">
+          <span class="en">We provide end-to-end after-sales services for commercial/industrial energy storage systems and electric vehicles, covering everything from module-level diagnostics to full system overhaul.</span>
+          <span class="zh">我们为工商业储能系统及电动车辆提供全链条售后服务，涵盖模组级诊断到整系统大修。</span>
+        </p>
+
+        <div class="service-list">
+          <div class="service-item">
+            <div class="service-item-title">
+              <span class="en">Cell / Module / Pack Balancing</span>
+              <span class="zh">电芯模组 Pack 均衡</span>
+            </div>
+            <p class="service-item-desc">
+              <span class="en">Precise capacity balancing to restore system performance and extend battery life.</span>
+              <span class="zh">精准容量均衡，恢复系统性能，延长电池寿命。</span>
+            </p>
+          </div>
+          <div class="service-item">
+            <div class="service-item-title">
+              <span class="en">Communication Fault Repair</span>
+              <span class="zh">通讯故障维修</span>
+            </div>
+            <p class="service-item-desc">
+              <span class="en">Diagnosis and resolution of BMS, CAN bus and protocol communication failures.</span>
+              <span class="zh">BMS、CAN总线及协议通讯故障诊断与修复。</span>
+            </p>
+          </div>
+          <div class="service-item">
+            <div class="service-item-title">
+              <span class="en">Thermal Management &amp; Water Cooling</span>
+              <span class="zh">热管理系统 / 水冷机组</span>
+            </div>
+            <p class="service-item-desc">
+              <span class="en">Service and repair of liquid cooling systems to maintain optimal operating temperatures.</span>
+              <span class="zh">液冷系统维修保养，确保设备在最佳温度范围内运行。</span>
+            </p>
+          </div>
+          <div class="service-item">
+            <div class="service-item-title">
+              <span class="en">Firmware &amp; Program Upgrades</span>
+              <span class="zh">程序升级</span>
+            </div>
+            <p class="service-item-desc">
+              <span class="en">BMS / EMS software updates to the latest versions for improved safety and efficiency.</span>
+              <span class="zh">BMS/EMS软件升级至最新版本，提升安全性与效率。</span>
+            </p>
+          </div>
+          <div class="service-item">
+            <div class="service-item-title">
+              <span class="en">EV Three-Electric System</span>
+              <span class="zh">乘用车 / 商用车三电故障</span>
+            </div>
+            <p class="service-item-desc">
+              <span class="en">Battery, motor and e-control fault diagnosis for passenger and commercial EVs.</span>
+              <span class="zh">乘用车及商用车电池、电机、电控三电系统故障诊断。</span>
+            </p>
+          </div>
+          <div class="service-item">
+            <div class="service-item-title">
+              <span class="en">Insulation &amp; Safety Inspection</span>
+              <span class="zh">绝缘检测与安全检查</span>
+            </div>
+            <p class="service-item-desc">
+              <span class="en">High-voltage insulation resistance testing and safety compliance inspections.</span>
+              <span class="zh">高压绝缘电阻测试及安全合规检查。</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="aftersales-images">
+        <div class="img-tall">
+          <img src="Image_20260302235646_236_2597.jpg" alt="Battery testing" style="height:100%;" />
+        </div>
+        <div class="img-short">
+          <img src="Image_20260302235640_233_2597.jpg" alt="Battery module" style="height:100%;" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     INSTALLATION & TESTING
+═══════════════════════════════════════════════ -->
+<section id="installation">
+  <div class="section-inner">
+    <div class="section-tag"><span class="en">Installation &amp; Testing</span><span class="zh">安装与测试服务</span></div>
+    <h2 class="section-title">
+      <span class="en">From Commissioning to Cold-Climate Road Tests</span>
+      <span class="zh">从系统调试到寒地路测，一站式服务</span>
+    </h2>
+    <div class="divider-accent"></div>
+    <p class="section-desc">
+      <span class="en">We handle the full installation and commissioning lifecycle for renewable energy systems, and provide specialized vehicle testing services across the Nordic environment.</span>
+      <span class="zh">我们承担可再生能源系统全周期安装与调试，并在北欧环境提供专业车辆测试服务。</span>
+    </p>
+
+    <div class="install-grid">
+      <div class="install-card">
+        <div class="install-icon">☀️</div>
+        <div class="install-title"><span class="en">PV System Installation</span><span class="zh">光伏系统安装</span></div>
+        <p class="install-desc">
+          <span class="en">Residential and commercial photovoltaic system installation, including grid-connected and off-grid configurations.</span>
+          <span class="zh">户用及工商业光伏系统安装，涵盖并网与离网配置。</span>
+        </p>
+      </div>
+      <div class="install-card">
+        <div class="install-icon">🔋</div>
+        <div class="install-title"><span class="en">Energy Storage Installation</span><span class="zh">储能系统安装</span></div>
+        <p class="install-desc">
+          <span class="en">Commercial/industrial and residential energy storage system deployment, integration and commissioning.</span>
+          <span class="zh">工商业及户用储能系统部署、集成与调试。</span>
+        </p>
+      </div>
+      <div class="install-card">
+        <div class="install-icon">💨</div>
+        <div class="install-title"><span class="en">Wind Turbine Installation</span><span class="zh">风机安装</span></div>
+        <p class="install-desc">
+          <span class="en">Installation and commissioning of wind energy equipment in Nordic conditions.</span>
+          <span class="zh">北欧环境下风能设备的安装与调试服务。</span>
+        </p>
+      </div>
+      <div class="install-card">
+        <div class="install-icon">⚡</div>
+        <div class="install-title"><span class="en">System Commissioning</span><span class="zh">工商业储能调试</span></div>
+        <p class="install-desc">
+          <span class="en">End-to-end commissioning for commercial/industrial energy storage — from system-level integration to grid acceptance testing.</span>
+          <span class="zh">工商业储能端到端调试，从系统集成到并网验收测试。</span>
+        </p>
+      </div>
+      <div class="install-card">
+        <div class="install-icon">🚗</div>
+        <div class="install-title"><span class="en">EV Road Testing in Europe</span><span class="zh">国内车辆欧洲路测</span></div>
+        <p class="install-desc">
+          <span class="en">Comprehensive vehicle inspection and cold-climate road testing services for Chinese OEMs entering the European market.</span>
+          <span class="zh">为进入欧洲市场的中国车企提供整车检验及寒地路测服务。</span>
+        </p>
+      </div>
+      <div class="install-card">
+        <div class="install-icon">📊</div>
+        <div class="install-title"><span class="en">Technical Reporting</span><span class="zh">技术报告</span></div>
+        <p class="install-desc">
+          <span class="en">Detailed commissioning reports, performance analyses and compliance documentation for all projects.</span>
+          <span class="zh">提供详细的调试报告、性能分析及合规文件。</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="install-gallery">
+      <div class="main-img">
+        <img src="Image_20260302235643_234_2597.jpg" alt="Energy storage commissioning" style="height:100%;" />
+      </div>
+      <div class="side-img">
+        <img src="Image_20260302235638_232_2597.jpg" alt="EV testing in snow" style="height:100%;" />
+      </div>
+      <div class="side-img">
+        <img src="Image_20260302235657_240_2597.jpg" alt="Solar panel installation" style="height:100%;" />
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     WAREHOUSING & LOGISTICS
+═══════════════════════════════════════════════ -->
+<section id="warehousing">
+  <div class="section-inner">
+    <div class="section-tag"><span class="en">Warehousing &amp; Logistics</span><span class="zh">仓储物流</span></div>
+    <h2 class="section-title">
+      <span class="en">Reliable Storage &amp; Supply Chain</span>
+      <span class="zh">可靠的存储与供应链管理</span>
+    </h2>
+    <div class="divider-accent"></div>
+
+    <div class="warehouse-layout">
+      <div class="warehouse-images">
+        <div class="w-tall">
+          <img src="Image_20260302235654_239_2597.jpg" alt="Battery warehouse" style="height:100%;" />
+        </div>
+        <div class="w-short">
+          <img src="Image_20260302235651_238_2597.jpg" alt="Battery module storage" style="height:100%;" />
+        </div>
+        <div class="w-short">
+          <img src="Image_20260302235648_237_2597.jpg" alt="Battery installation" style="height:100%;" />
+        </div>
+      </div>
+
+      <div>
+        <p class="section-desc">
+          <span class="en">Our warehousing and logistics services ensure your equipment and spare parts are safely stored, properly managed and reliably delivered — including specialized handling of hazardous materials such as lithium batteries.</span>
+          <span class="zh">我们的仓储物流服务确保设备和备件安全存储、规范管理和可靠配送，并提供锂电池等危险品的专业化处理。</span>
+        </p>
+
+        <div class="warehouse-features">
+          <div class="warehouse-feature">
+            <div class="feature-icon-wrap">📦</div>
+            <div>
+              <div class="feature-text-title"><span class="en">Spare Parts Storage</span><span class="zh">备件存储</span></div>
+              <p class="feature-text-desc">
+                <span class="en">Organized inventory management for spare parts with real-time tracking and rapid dispatch capabilities.</span>
+                <span class="zh">有组织的备件库存管理，支持实时追踪和快速发货。</span>
+              </p>
+            </div>
+          </div>
+          <div class="warehouse-feature">
+            <div class="feature-icon-wrap">🏭</div>
+            <div>
+              <div class="feature-text-title"><span class="en">Sales Goods Storage</span><span class="zh">销售货物存储</span></div>
+              <p class="feature-text-desc">
+                <span class="en">Secure warehousing for new energy equipment and products awaiting distribution in Nordic markets.</span>
+                <span class="zh">为待分销至北欧市场的新能源设备及产品提供安全仓储。</span>
+              </p>
+            </div>
+          </div>
+          <div class="warehouse-feature">
+            <div class="feature-icon-wrap">⚠️</div>
+            <div>
+              <div class="feature-text-title"><span class="en">Hazardous Material Transport</span><span class="zh">危险品运输</span></div>
+              <p class="feature-text-desc">
+                <span class="en">Fully compliant transport of lithium batteries and other hazardous materials under ADR / IATA regulations.</span>
+                <span class="zh">依据ADR/IATA法规，合规运输锂电池及其他危险品。</span>
+              </p>
+            </div>
+          </div>
+          <div class="warehouse-feature">
+            <div class="feature-icon-wrap">🚚</div>
+            <div>
+              <div class="feature-text-title"><span class="en">Parts &amp; Component Delivery</span><span class="zh">配件配送</span></div>
+              <p class="feature-text-desc">
+                <span class="en">Fast and reliable last-mile delivery of components and accessories to project sites across Norway, Sweden, Denmark and Finland.</span>
+                <span class="zh">在挪威、瑞典、丹麦和芬兰项目现场提供快速可靠的配件末端配送。</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     ABOUT US
+═══════════════════════════════════════════════ -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-tag"><span class="en">About Us</span><span class="zh">关于我们</span></div>
+    <h2 class="section-title">
+      <span class="en">Who We Are</span>
+      <span class="zh">公司介绍</span>
+    </h2>
+    <div class="divider-accent"></div>
+
+    <div class="about-hero-img">
+      <img src="Image_20260302235628_229_2597.jpg" alt="Energy storage project" style="height:100%;" />
+    </div>
+
+    <div class="about-blocks">
+      <div class="about-text">
+        <p>
+          <span class="en"><strong>BoostEnergy AS</strong> is a technology innovation company headquartered in Asker, Norway, founded in 2025. We serve Norway, Sweden, Denmark and Finland — the heart of the Nordic region — delivering high-quality digital, engineering and integrated solutions tailored to the needs of the clean-energy transition.</span>
+          <span class="zh"><strong>BoostEnergy AS</strong> 是一家总部位于挪威阿斯克尔的技术创新公司，成立于2025年，服务于挪威、瑞典、丹麦和芬兰——北欧核心地区——为清洁能源转型提供高质量的数字化、工程及综合解决方案。</span>
+        </p>
+        <p>
+          <span class="en">We combine software and hardware development, technical consulting and hands-on project execution to enable digital transformation and sustainable development across new energy, industry and infrastructure sectors.</span>
+          <span class="zh">我们融合软硬件开发、技术咨询与实地项目执行，推动新能源、工业和基础设施领域的数字化转型与可持续发展。</span>
+        </p>
+        <p>
+          <span class="en">Our multidisciplinary team brings together expertise from energy engineering, software development, project management and logistics — with extensive experience in both European and international projects.</span>
+          <span class="zh">我们的多元化团队汇聚了能源工程、软件开发、项目管理和物流等领域的专家，拥有丰富的欧洲及国际项目经验。</span>
+        </p>
+        <p>
+          <span class="en"><strong>Mission:</strong> To drive industrial digitalization and the green energy transition in the Nordics — and to become the region's leading integrated engineering and technology service provider.</span>
+          <span class="zh"><strong>使命：</strong>推动北欧工业数字化与绿色能源转型，成为北欧领先的综合工程与技术服务提供商。</span>
+        </p>
+      </div>
+
+      <div class="about-pillars">
+        <div class="pillar">
+          <div class="pillar-label"><span class="en">Mission</span><span class="zh">使命</span></div>
+          <p class="pillar-text">
+            <span class="en">Drive industrial digitalization and the green transition in the Nordics.</span>
+            <span class="zh">推动北欧工业数字化与绿色能源转型。</span>
+          </p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-label"><span class="en">Vision</span><span class="zh">愿景</span></div>
+          <p class="pillar-text">
+            <span class="en">Become the leading integrated engineering and technology service provider in the Nordic region.</span>
+            <span class="zh">成为北欧领先的综合工程与技术服务提供商。</span>
+          </p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-label"><span class="en">Coverage</span><span class="zh">服务范围</span></div>
+          <p class="pillar-text">
+            <span class="en">Norway · Sweden · Denmark · Finland</span>
+            <span class="zh">挪威 · 瑞典 · 丹麦 · 芬兰</span>
+          </p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-label"><span class="en">Headquarters</span><span class="zh">总部</span></div>
+          <p class="pillar-text">Asker, Norge</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core Values -->
+    <div class="section-tag" style="margin-top:0;"><span class="en">Core Values</span><span class="zh">核心价值观</span></div>
+    <h3 class="section-title" style="font-size:1.6rem; margin-bottom:2rem;">
+      <span class="en">What Drives Us</span>
+      <span class="zh">我们的价值观</span>
+    </h3>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-icon">💡</div>
+        <div class="value-name"><span class="en">Innovation</span><span class="zh">创新</span></div>
+        <p class="value-desc">
+          <span class="en">Continuously pushing boundaries in clean energy technology and digital solutions.</span>
+          <span class="zh">持续推动清洁能源技术与数字解决方案的边界突破。</span>
+        </p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🎯</div>
+        <div class="value-name"><span class="en">Professionalism</span><span class="zh">专业</span></div>
+        <p class="value-desc">
+          <span class="en">Delivering excellence through deep expertise and rigorous technical standards.</span>
+          <span class="zh">以深厚专业知识和严格技术标准提供卓越服务。</span>
+        </p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🤝</div>
+        <div class="value-name"><span class="en">Collaboration</span><span class="zh">协作</span></div>
+        <p class="value-desc">
+          <span class="en">Building lasting partnerships with clients, partners and communities across the Nordics.</span>
+          <span class="zh">与北欧各地客户、合作伙伴和社区建立持久的合作关系。</span>
+        </p>
+      </div>
+      <div class="value-card">
+        <div class="value-icon">🌿</div>
+        <div class="value-name"><span class="en">Sustainability</span><span class="zh">可持续</span></div>
+        <p class="value-desc">
+          <span class="en">Committed to environmental responsibility and a carbon-neutral energy future.</span>
+          <span class="zh">致力于环境责任与碳中和能源未来。</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-tag"><span class="en">Contact Us</span><span class="zh">联系我们</span></div>
+    <h2 class="section-title">
+      <span class="en">Get in Touch</span>
+      <span class="zh">与我们联系</span>
+    </h2>
+    <div class="divider-accent"></div>
+    <p class="section-desc">
+      <span class="en">Have a project in mind or want to learn more about our services? We'd love to hear from you. Reach out and our team will respond promptly.</span>
+      <span class="zh">有项目需求或想了解我们的服务？请与我们联系，我们的团队将及时回复。</span>
+    </p>
+
+    <div class="contact-layout">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label"><span class="en">Address</span><span class="zh">地址</span></div>
+            <div class="contact-value">Asker, Norge</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="contact-label"><span class="en">Email</span><span class="zh">邮箱</span></div>
+            <div class="contact-value">
+              <a href="mailto:jie.gao@boostenergy.no" style="color:inherit;">jie.gao@boostenergy.no</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-label"><span class="en">Phone</span><span class="zh">电话</span></div>
+            <div class="contact-value">
+              <a href="tel:+4798075335" style="color:inherit;">+47 980 75 335</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🌐</div>
+          <div>
+            <div class="contact-label"><span class="en">Service Area</span><span class="zh">服务区域</span></div>
+            <div class="contact-value">
+              <span class="en">Norway · Sweden · Denmark · Finland</span>
+              <span class="zh">挪威 · 瑞典 · 丹麦 · 芬兰</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="handleFormSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label><span class="en">Full Name</span><span class="zh">姓名</span></label>
+            <input type="text" placeholder="John Smith" required />
+          </div>
+          <div class="form-group">
+            <label><span class="en">Email</span><span class="zh">邮箱</span></label>
+            <input type="email" placeholder="you@example.com" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label><span class="en">Service of Interest</span><span class="zh">感兴趣的服务</span></label>
+          <select>
+            <option value=""><span class="en">Select a service</span></option>
+            <option value="aftersales"><span class="en">After-sales Service</span></option>
+            <option value="installation"><span class="en">Installation &amp; Testing</span></option>
+            <option value="warehousing"><span class="en">Warehousing &amp; Logistics</span></option>
+            <option value="other"><span class="en">Other</span></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label><span class="en">Message</span><span class="zh">留言</span></label>
+          <textarea placeholder="Tell us about your project..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">
+          <span class="en">Send Message</span>
+          <span class="zh">发送消息</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">
+        <svg width="26" height="26" viewBox="0 0 30 30" fill="none">
+          <polygon points="15,2 28,10 28,20 15,28 2,20 2,10" fill="none" stroke="#00A878" stroke-width="1.5"/>
+          <path d="M10 17 L15 8 L15 14 L20 14 L15 22 L15 16 Z" fill="#00A878"/>
+        </svg>
+        BoostEnergy AS
+      </div>
+      <p class="footer-brand-desc">
+        <span class="en">Empowering the Nordics with digital, engineering and integrated solutions for the clean energy transition. Based in Asker, Norway.</span>
+        <span class="zh">以数字化、工程及综合解决方案赋能北欧清洁能源转型，总部位于挪威阿斯克尔。</span>
+      </p>
+    </div>
+
+    <div>
+      <div class="footer-heading"><span class="en">Services</span><span class="zh">服务</span></div>
+      <div class="footer-links">
+        <a href="#aftersales"><span class="en">After-sales Service</span><span class="zh">售后服务</span></a>
+        <a href="#installation"><span class="en">Installation &amp; Testing</span><span class="zh">安装与测试</span></a>
+        <a href="#warehousing"><span class="en">Warehousing &amp; Logistics</span><span class="zh">仓储物流</span></a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-heading"><span class="en">Company</span><span class="zh">公司</span></div>
+      <div class="footer-links">
+        <a href="#about"><span class="en">About Us</span><span class="zh">关于我们</span></a>
+        <a href="#contact"><span class="en">Contact Us</span><span class="zh">联系我们</span></a>
+      </div>
+    </div>
+
+    <div>
+      <div class="footer-heading"><span class="en">Contact</span><span class="zh">联系方式</span></div>
+      <div class="footer-links">
+        <a href="mailto:jie.gao@boostenergy.no">jie.gao@boostenergy.no</a>
+        <a href="tel:+4798075335">+47 980 75 335</a>
+        <span>Asker, Norge</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2025 BoostEnergy AS. <span class="en">All rights reserved.</span><span class="zh">版权所有。</span></span>
+    <span style="color:rgba(255,255,255,0.3);">
+      <span class="en">Empowering the Nordics · A Digital &amp; Intelligent Future</span>
+      <span class="zh">赋能北欧 · 数智未来</span>
+    </span>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════ -->
+<script>
+  /* Language switcher */
+  function setLang(lang) {
+    const html = document.documentElement;
+    html.classList.remove('lang-en', 'lang-zh');
+    html.classList.add('lang-' + lang);
+    document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+    document.getElementById('btnZh').classList.toggle('active', lang === 'zh');
+    localStorage.setItem('boostLang', lang);
+  }
+
+  /* Restore language preference */
+  (function () {
+    const saved = localStorage.getItem('boostLang');
+    if (saved === 'zh') setLang('zh');
+  })();
+
+  /* Mobile menu */
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  /* Close mobile menu on link click */
+  document.querySelectorAll('#navLinks a').forEach(function (a) {
+    a.addEventListener('click', function () {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  /* Navbar scroll effect */
+  window.addEventListener('scroll', function () {
+    const nav = document.getElementById('navbar');
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  /* Contact form submit */
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.form-submit');
+    const isZh = document.documentElement.classList.contains('lang-zh');
+    btn.textContent = isZh ? '消息已发送！感谢您的联系。' : 'Message sent! Thank you for reaching out.';
+    btn.style.background = '#007A57';
+    btn.disabled = true;
+    setTimeout(function () {
+      btn.innerHTML = '<span class="en">Send Message</span><span class="zh">发送消息</span>';
+      btn.style.background = '';
+      btn.disabled = false;
+      e.target.reset();
+    }, 4000);
+  }
+
+  /* Smooth scroll for anchor links */
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
