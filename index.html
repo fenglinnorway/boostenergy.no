@@ -103,6 +103,39 @@
     }
     .nav-links a:hover { color: var(--green); }
 
+    /* Dropdown */
+    .nav-links .dropdown { position: relative; }
+    .nav-links .dropdown > a::after {
+      content: ' ▾';
+      font-size: 0.75em;
+      opacity: 0.7;
+    }
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 12px);
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--navy);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      min-width: 140px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 10px 18px;
+      white-space: nowrap;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.85);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .dropdown-menu a:last-child { border-bottom: none; }
+    .dropdown-menu a:hover { background: rgba(0,168,120,0.15); color: var(--green); }
+    .nav-links .dropdown:hover .dropdown-menu { display: block; }
+
     .nav-right {
       display: flex;
       align-items: center;
@@ -787,6 +820,9 @@
     @media (max-width: 768px) {
       .nav-links { display: none; position: absolute; top: 68px; left: 0; right: 0; background: var(--navy); flex-direction: column; padding: 20px 6%; gap: 1rem; }
       .nav-links.open { display: flex; }
+      .dropdown-menu { display: none; position: static; transform: none; border: none; box-shadow: none; background: rgba(255,255,255,0.05); border-radius: 4px; margin-top: 4px; }
+      .nav-links .dropdown:hover .dropdown-menu,
+      .nav-links .dropdown.open .dropdown-menu { display: block; }
       .hamburger { display: flex; }
       .stats-bar { grid-template-columns: repeat(2, 1fr); }
       .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
@@ -816,6 +852,16 @@
 
   <ul class="nav-links" id="navLinks">
     <li><a href="#home"><span class="en">Home</span><span class="zh">首页</span></a></li>
+    <li class="dropdown">
+      <a href="#"><span class="en">Products</span><span class="zh">产品销售</span></a>
+      <ul class="dropdown-menu">
+        <li><a href="#"><span class="en">Li-ion Battery</span><span class="zh">锂电池</span></a></li>
+        <li><a href="#"><span class="en">Charging Pile</span><span class="zh">充电桩</span></a></li>
+        <li><a href="#"><span class="en">Energy Storage</span><span class="zh">储能设备</span></a></li>
+        <li><a href="#"><span class="en">PV &amp; Wind Power</span><span class="zh">光伏风电</span></a></li>
+        <li><a href="#"><span class="en">Custom Battery Pack</span><span class="zh">电池包定制</span></a></li>
+      </ul>
+    </li>
     <li><a href="#aftersales"><span class="en">After-sales Service</span><span class="zh">售后服务</span></a></li>
     <li><a href="#installation"><span class="en">Installation &amp; Testing</span><span class="zh">安装与测试</span></a></li>
     <li><a href="#warehousing"><span class="en">Warehousing &amp; Logistics</span><span class="zh">仓储物流</span></a></li>
@@ -933,7 +979,7 @@
       <!-- Card 2 -->
       <div class="service-card">
         <div class="service-card-img">
-          <img src="Image_20260302235643_234_2597.jpg" alt="Installation & Testing" />
+          <img src="Image_20260304194530_358_2597.jpg" alt="Installation & Testing" />
         </div>
         <div class="service-card-body">
           <div class="service-card-icon">
@@ -959,8 +1005,8 @@
           </div>
           <div class="service-card-title"><span class="en">Warehousing &amp; Logistics</span><span class="zh">仓储物流</span></div>
           <p class="service-card-desc">
-            <span class="en">Spare parts storage, goods warehousing, compliant transport of hazardous materials (batteries), and parts delivery across the Nordics.</span>
-            <span class="zh">备件存储、货物仓储、电池等危险品合规运输，以及北欧范围内的配件配送服务。</span>
+            <span class="en">Spare parts storage, goods warehousing, EU-compliant hazardous material storage (fire suppression, CCTV, sprinklers, emergency exits), and rapid parts delivery across the entire European continent.</span>
+            <span class="zh">备件存储、货物仓储、符合欧盟法规的危化品存储（配备灭火系统、闭路监控、喷淋及逃生通道），以及覆盖欧洲全境的快速配件配送服务。</span>
           </p>
           <a href="#warehousing" class="card-link"><span class="en">Learn more</span><span class="zh">了解更多</span> →</a>
         </div>
@@ -1135,7 +1181,7 @@
 
     <div class="install-gallery">
       <div class="main-img">
-        <img src="Image_20260302235643_234_2597.jpg" alt="Energy storage commissioning" style="height:100%;" />
+        <img src="Image_20260304194530_358_2597.jpg" alt="Energy storage commissioning" style="height:100%;" />
       </div>
       <div class="side-img">
         <img src="Image_20260302235638_232_2597.jpg" alt="EV testing in snow" style="height:100%;" />
@@ -1175,8 +1221,8 @@
 
       <div>
         <p class="section-desc">
-          <span class="en">Our warehousing and logistics services ensure your equipment and spare parts are safely stored, properly managed and reliably delivered — including specialized handling of hazardous materials such as lithium batteries.</span>
-          <span class="zh">我们的仓储物流服务确保设备和备件安全存储、规范管理和可靠配送，并提供锂电池等危险品的专业化处理。</span>
+          <span class="en">Our warehousing and logistics network ensures your equipment and spare parts are safely stored, professionally managed and reliably delivered across Europe. With a large-scale warehouse infrastructure fully compliant with European regulations, we provide specialized hazardous material storage and rapid pan-European distribution.</span>
+          <span class="zh">我们的仓储物流网络确保设备与备件安全存储、规范管理并可靠配送至欧洲全境。依托完全符合欧洲法规的大规模仓储体系，我们提供危险品专业存储和快速覆盖全欧的配送服务。</span>
         </p>
 
         <div class="warehouse-features">
@@ -1203,10 +1249,10 @@
           <div class="warehouse-feature">
             <div class="feature-icon-wrap">⚠️</div>
             <div>
-              <div class="feature-text-title"><span class="en">Hazardous Material Transport</span><span class="zh">危险品运输</span></div>
+              <div class="feature-text-title"><span class="en">Hazardous Material Storage</span><span class="zh">危化品存储</span></div>
               <p class="feature-text-desc">
-                <span class="en">Fully compliant transport of lithium batteries and other hazardous materials under ADR / IATA regulations.</span>
-                <span class="zh">依据ADR/IATA法规，合规运输锂电池及其他危险品。</span>
+                <span class="en">Our dedicated hazardous material warehouse fully complies with EU REACH, ADR, and local fire-safety regulations. The facility is equipped with a certified automatic sprinkler system, independent fire suppression units, 24/7 CCTV surveillance, electronic access control, clearly marked emergency escape routes, and regular third-party safety audits — ensuring the highest standards of compliance and protection for lithium batteries and other dangerous goods.</span>
+                <span class="zh">我们专设的危化品仓库完全符合欧盟REACH法规、ADR及当地消防安全标准。仓库配备认证自动喷淋系统、独立灭火装置、全天候闭路电视监控、电子门禁管理、清晰标识的逃生通道，并定期接受第三方安全审计，为锂电池等危险品提供最高等级的合规保障与安全防护。</span>
               </p>
             </div>
           </div>
@@ -1215,8 +1261,8 @@
             <div>
               <div class="feature-text-title"><span class="en">Parts &amp; Component Delivery</span><span class="zh">配件配送</span></div>
               <p class="feature-text-desc">
-                <span class="en">Fast and reliable last-mile delivery of components and accessories to project sites across Norway, Sweden, Denmark and Finland.</span>
-                <span class="zh">在挪威、瑞典、丹麦和芬兰项目现场提供快速可靠的配件末端配送。</span>
+                <span class="en">Backed by an extensive warehousing network, we deliver components and accessories rapidly to project sites across the entire European continent — covering the Nordic countries (Norway, Sweden, Denmark, Finland), Western Europe (Germany, France, Netherlands, Belgium, UK, Ireland), Central Europe (Poland, Czech Republic, Austria, Switzerland, Hungary), and Southern Europe (Spain, Portugal, Italy, Greece). With strategically positioned stock hubs, we ensure fast, reliable last-mile delivery wherever you need it.</span>
+                <span class="zh">依托庞大的仓储体系，我们可将配件快速配送至欧洲全境——覆盖北欧四国（挪威、瑞典、丹麦、芬兰）、西欧（德国、法国、荷兰、比利时、英国、爱尔兰）、中欧（波兰、捷克、奥地利、瑞士、匈牙利）及南欧（西班牙、葡萄牙、意大利、希腊）。战略性备货节点布局确保无论目的地在哪，均可实现快速可靠的末端配送。</span>
               </p>
             </div>
           </div>
@@ -1507,10 +1553,22 @@
     document.getElementById('navLinks').classList.toggle('open');
   }
 
-  /* Close mobile menu on link click */
+  /* Mobile dropdown toggle on tap */
+  document.querySelectorAll('#navLinks .dropdown > a').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        a.closest('.dropdown').classList.toggle('open');
+      }
+    });
+  });
+
+  /* Close mobile menu on non-dropdown link click */
   document.querySelectorAll('#navLinks a').forEach(function (a) {
     a.addEventListener('click', function () {
-      document.getElementById('navLinks').classList.remove('open');
+      if (!a.closest('.dropdown > a')) {
+        document.getElementById('navLinks').classList.remove('open');
+      }
     });
   });
 
