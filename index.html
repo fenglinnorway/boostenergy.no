@@ -691,6 +691,27 @@
       font-size: 0.95rem;
     }
 
+    .contact-qr-row {
+      display: flex;
+      gap: 20px;
+    }
+    .contact-qr-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .contact-qr-img {
+      width: 120px;
+      height: 120px;
+      object-fit: contain;
+      border-radius: var(--radius);
+      border: 1px solid rgba(0,168,120,0.4);
+      background: #fff;
+      padding: 6px;
+      transition: transform var(--transition);
+    }
+    .contact-qr-img:hover { transform: scale(1.08); }
+
     .contact-form {
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.12);
@@ -843,11 +864,7 @@
 ═══════════════════════════════════════════════ -->
 <nav id="navbar">
   <a href="#home" class="nav-logo">
-    <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
-      <polygon points="15,2 28,10 28,20 15,28 2,20 2,10" fill="none" stroke="#00A878" stroke-width="1.5"/>
-      <path d="M10 17 L15 8 L15 14 L20 14 L15 22 L15 16 Z" fill="#00A878"/>
-    </svg>
-    BoostEnergy<span style="color:var(--green);">&nbsp;AS</span>
+    <img src="logo_transparent.png" alt="BoostEnergy AS" style="height:44px;width:auto;display:block;" />
   </a>
 
   <ul class="nav-links" id="navLinks">
@@ -1430,9 +1447,20 @@
           <div>
             <div class="contact-label"><span class="en">Service Area</span><span class="zh">服务区域</span></div>
             <div class="contact-value">
-              <span class="en">Norway · Sweden · Denmark · Finland</span>
-              <span class="zh">挪威 · 瑞典 · 丹麦 · 芬兰</span>
+              <span class="en">Nordic · Western Europe · Central Europe · Southern Europe</span>
+              <span class="zh">北欧 · 西欧 · 中欧 · 南欧</span>
             </div>
+          </div>
+        </div>
+
+        <div class="contact-qr-row">
+          <div class="contact-qr-item">
+            <div class="contact-label" style="text-align:center;margin-bottom:8px;">WeChat</div>
+            <img src="wechat.jpg" alt="WeChat QR Code" class="contact-qr-img" />
+          </div>
+          <div class="contact-qr-item">
+            <div class="contact-label" style="text-align:center;margin-bottom:8px;">WhatsApp</div>
+            <img src="whatsapp.jpg" alt="WhatsApp QR Code" class="contact-qr-img" />
           </div>
         </div>
       </div>
